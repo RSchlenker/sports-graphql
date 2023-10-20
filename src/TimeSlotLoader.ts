@@ -56,10 +56,12 @@ export default class TimeSlotLoader {
     }
 
   getLocations(): Location[] {
-    return this.resolvers.map((r) => ({
-      name: r.name,
-      eventTypes: r.availableEventTypes,
-      link: r.link,
-    }))
+    return this.resolvers.map(
+      (r: TimeSlotResolver): Location => ({
+        name: r.name,
+        eventTypes: r.availableEventTypes,
+        link: r.link,
+      }),
+    )
   }
 }
