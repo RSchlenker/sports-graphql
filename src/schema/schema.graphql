@@ -1,0 +1,30 @@
+scalar DateTime
+
+enum eventType {
+    Squash
+    Badminton
+    Soccer
+}
+
+enum eventTypeInput {
+    Squash
+    Badminton
+    Soccer
+    All
+}
+
+type location {
+    name: String
+    eventTypes: [eventType]
+}
+
+type timeSlot {
+    location: location
+    type: eventType
+    startTime: DateTime
+    endTime: DateTime
+}
+
+type Query {
+    availableTimeslots(from: DateTime, to: DateTime, type: eventTypeInput!) : [timeSlot]
+}
