@@ -37,6 +37,7 @@ export default class SoccerSindelfingenResolver implements TimeSlotResolver {
         endTime: new Date(startTime.getTime() + 15 * 60 * 1000),
         type: EventType.Soccer,
         location: {
+          link: 'https://www.dieeventarena.de/home/fußball/',
           name: NAME,
           eventTypes: [EventType.Soccer],
         },

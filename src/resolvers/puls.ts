@@ -46,6 +46,7 @@ export default class PulsResolver implements TimeSlotResolver {
         ? EventType.Squash
         : EventType.Badminton,
       location: {
+        link: 'https://www.puls-stuttgart.de/',
         name: RESOLVER_NAME,
         eventTypes: [EventType.Badminton, EventType.Squash],
       },

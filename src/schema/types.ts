@@ -46,16 +46,16 @@ export enum EventTypeInput {
 export type Location = {
   __typename?: 'location';
   eventTypes?: Maybe<Array<Maybe<EventType>>>;
-  link?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
+  link: Scalars['String']['output'];
+  name: Scalars['String']['output'];
 };
 
 export type TimeSlot = {
   __typename?: 'timeSlot';
-  endTime?: Maybe<Scalars['DateTime']['output']>;
-  location?: Maybe<Location>;
-  startTime?: Maybe<Scalars['DateTime']['output']>;
-  type?: Maybe<EventType>;
+  endTime: Scalars['DateTime']['output'];
+  location: Location;
+  startTime: Scalars['DateTime']['output'];
+  type: EventType;
 };
 
 
@@ -160,16 +160,16 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 
 export type LocationResolvers<ContextType = any, ParentType extends ResolversParentTypes['location'] = ResolversParentTypes['location']> = {
   eventTypes?: Resolver<Maybe<Array<Maybe<ResolversTypes['eventType']>>>, ParentType, ContextType>;
-  link?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  link?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type TimeSlotResolvers<ContextType = any, ParentType extends ResolversParentTypes['timeSlot'] = ResolversParentTypes['timeSlot']> = {
-  endTime?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
-  location?: Resolver<Maybe<ResolversTypes['location']>, ParentType, ContextType>;
-  startTime?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
-  type?: Resolver<Maybe<ResolversTypes['eventType']>, ParentType, ContextType>;
+  endTime?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
+  location?: Resolver<ResolversTypes['location'], ParentType, ContextType>;
+  startTime?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
+  type?: Resolver<ResolversTypes['eventType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
