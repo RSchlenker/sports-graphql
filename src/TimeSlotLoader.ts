@@ -1,5 +1,6 @@
 import {
   EventType,
+  EventTypeInput,
   Location,
   QueryAvailableTimeslotsArgs,
   TimeSlot,
@@ -17,7 +18,9 @@ export default class TimeSlotLoader {
     this.resolvers = customResolvers
   }
   async loadAll(args: QueryAvailableTimeslotsArgs): Promise<TimeSlot[]> {
-    const promises = this.resolvers.map((r) => r.resolve(args))
+    const promises = this.resolvers
+      .filter(this.resolvesForEventType(args))
+      .map((r) => r.resolve(args))
     const allResults = await Promise.all(promises)
     return allResults
       .flat()
@@ -25,6 +28,16 @@ export default class TimeSlotLoader {
       .sort(this.sortTimeSlotsByStartTime)
   }
 
+  resolvesForEventType =
+    (args: QueryAvailableTimeslotsArgs) => (resolver: TimeSlotResolver) => {
+      if (args.type === EventTypeInput.All) {
+        return true
+      }
+      const eventTypeStrings = resolver.availableEventTypes.map((e) =>
+        e.valueOf(),
+      )
+      return eventTypeStrings.includes(args.type.valueOf())
+    }
   sortTimeSlotsByStartTime = (a: TimeSlot, b: TimeSlot) =>
     a.startTime.getTime() - b.startTime.getTime()
 

@@ -13,6 +13,7 @@ export default class PulsResolver implements TimeSlotResolver {
   public link = 'https://www.puls-stuttgart.de/'
   public name = RESOLVER_NAME
   async resolve({ type }: QueryAvailableTimeslotsArgs): Promise<TimeSlot[]> {
+    console.log('Loading puls timeslots')
     const eventTypes = await this.getEventTypes()
     let result: TimeSlot[] = []
     if (type === EventTypeInput.Badminton || type === EventTypeInput.All) {

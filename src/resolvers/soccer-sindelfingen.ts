@@ -13,6 +13,7 @@ export default class SoccerSindelfingenResolver implements TimeSlotResolver {
   link = 'https://www.dieeventarena.de/home/fußball/'
 
   async resolve(args: QueryAvailableTimeslotsArgs): Promise<TimeSlot[]> {
+    console.log('Loading Soccer Sindelfingen timeslots')
     return this.getEvents()
   }
 
