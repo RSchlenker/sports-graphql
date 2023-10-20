@@ -1,11 +1,13 @@
 import {
   EventType,
+  Location,
   QueryAvailableTimeslotsArgs,
   TimeSlot,
 } from './schema/types'
 
 export interface TimeSlotResolver {
   name: string
+  link: string
   availableEventTypes: EventType[]
   resolve: (args: QueryAvailableTimeslotsArgs) => Promise<TimeSlot[]>
 }
@@ -40,11 +42,11 @@ export default class TimeSlotLoader {
       return event.startTime >= args.from && event.startTime <= args.to
     }
 
-  availableEventTypesOf(locationName: string): EventType[] {
-    const resolver = this.resolvers.find((r) => r.name === locationName)
-    if (!resolver) {
-      throw new Error(`No resolver for location ${locationName}`)
-    }
-    return resolver.availableEventTypes
+  getLocations(): Location[] {
+    return this.resolvers.map((r) => ({
+      name: r.name,
+      eventTypes: r.availableEventTypes,
+      link: r.link,
+    }))
   }
 }

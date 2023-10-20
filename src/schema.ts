@@ -4,6 +4,7 @@ import TimeSlotLoader from './TimeSlotLoader'
 import PulsResolver from './resolvers/puls'
 import SoccerSindelfingenResolver from './resolvers/soccer-sindelfingen'
 import { DateTimeResolver } from 'graphql-scalars'
+import { Location } from './schema/types'
 
 const file = fs.readFileSync(__dirname + '/schema/schema.graphql', 'utf8')
 const timeslotLoader = new TimeSlotLoader([
@@ -17,6 +18,9 @@ export const schema = createSchema({
     Query: {
       availableTimeslots: async (parent, args, context) => {
         return await timeslotLoader.loadAll(args)
+      },
+      locations: (parent, args, context): Location[] => {
+        return timeslotLoader.getLocations()
       },
     },
   },

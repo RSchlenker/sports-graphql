@@ -20,6 +20,7 @@ export type Scalars = {
 export type Query = {
   __typename?: 'Query';
   availableTimeslots?: Maybe<Array<Maybe<TimeSlot>>>;
+  locations?: Maybe<Array<Maybe<Location>>>;
 };
 
 
@@ -45,6 +46,7 @@ export enum EventTypeInput {
 export type Location = {
   __typename?: 'location';
   eventTypes?: Maybe<Array<Maybe<EventType>>>;
+  link?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
 };
 
@@ -153,10 +155,12 @@ export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversT
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   availableTimeslots?: Resolver<Maybe<Array<Maybe<ResolversTypes['timeSlot']>>>, ParentType, ContextType, RequireFields<QueryAvailableTimeslotsArgs, 'type'>>;
+  locations?: Resolver<Maybe<Array<Maybe<ResolversTypes['location']>>>, ParentType, ContextType>;
 };
 
 export type LocationResolvers<ContextType = any, ParentType extends ResolversParentTypes['location'] = ResolversParentTypes['location']> = {
   eventTypes?: Resolver<Maybe<Array<Maybe<ResolversTypes['eventType']>>>, ParentType, ContextType>;
+  link?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };

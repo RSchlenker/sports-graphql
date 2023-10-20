@@ -10,6 +10,7 @@ const NAME = 'SoccerSindelfingen'
 export default class SoccerSindelfingenResolver implements TimeSlotResolver {
   availableEventTypes: EventType[] = [EventType.Soccer]
   name = NAME
+  link = 'https://www.dieeventarena.de/home/fußball/'
 
   async resolve(args: QueryAvailableTimeslotsArgs): Promise<TimeSlot[]> {
     return this.getEvents()

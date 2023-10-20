@@ -16,6 +16,7 @@ enum eventTypeInput {
 type location {
     name: String
     eventTypes: [eventType]
+    link: String
 }
 
 type timeSlot {
@@ -27,4 +28,5 @@ type timeSlot {
 
 type Query {
     availableTimeslots(from: DateTime, to: DateTime, type: eventTypeInput!) : [timeSlot]
+    locations: [location]
 }

@@ -8,14 +8,11 @@ import {
 import { TimeSlotResolver } from '../TimeSlotLoader'
 
 const RESOLVER_NAME = 'Puls'
-class PulsResolver implements TimeSlotResolver {
+export default class PulsResolver implements TimeSlotResolver {
   public availableEventTypes = [EventType.Badminton, EventType.Squash]
+  public link = 'https://www.puls-stuttgart.de/'
   public name = RESOLVER_NAME
-  async resolve({
-    from,
-    to,
-    type,
-  }: QueryAvailableTimeslotsArgs): Promise<TimeSlot[]> {
+  async resolve({ type }: QueryAvailableTimeslotsArgs): Promise<TimeSlot[]> {
     const eventTypes = await this.getEventTypes()
     let result: TimeSlot[] = []
     if (type === EventTypeInput.Badminton || type === EventTypeInput.All) {
@@ -49,6 +46,7 @@ class PulsResolver implements TimeSlotResolver {
         : EventType.Badminton,
       location: {
         name: RESOLVER_NAME,
+        eventTypes: [EventType.Badminton, EventType.Squash],
       },
     }
   }
@@ -91,4 +89,3 @@ function getDateFromResponse(responseString: string): Date {
   const millisWithoutTimezone = time.split('+')[0]
   return new Date(+millisWithoutTimezone)
 }
-export default PulsResolver
