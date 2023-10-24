@@ -1,8 +1,4 @@
-import {
-  EventType,
-  QueryAvailableTimeslotsArgs,
-  TimeSlot,
-} from '../schema/types'
+import { EventType, QueryTimeslotsArgs, TimeSlot } from '../schema/types'
 import axios from 'axios'
 import { TimeSlotResolver } from '../TimeSlotLoader'
 
@@ -12,7 +8,7 @@ export default class SoccerSindelfingenResolver implements TimeSlotResolver {
   name = NAME
   link = 'https://www.dieeventarena.de/home/fußball/'
 
-  async resolve(args: QueryAvailableTimeslotsArgs): Promise<TimeSlot[]> {
+  async resolve(args: QueryTimeslotsArgs): Promise<TimeSlot[]> {
     console.log('Loading Soccer Sindelfingen timeslots')
     return this.getEvents()
   }

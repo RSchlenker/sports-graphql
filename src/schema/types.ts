@@ -19,13 +19,14 @@ export type Scalars = {
 
 export type Query = {
   __typename?: 'Query';
-  availableTimeslots?: Maybe<Array<Maybe<TimeSlot>>>;
   locations?: Maybe<Array<Maybe<Location>>>;
+  timeslots?: Maybe<Array<Maybe<TimeSlot>>>;
 };
 
 
-export type QueryAvailableTimeslotsArgs = {
+export type QueryTimeslotsArgs = {
   from?: InputMaybe<Scalars['DateTime']['input']>;
+  location?: InputMaybe<Scalars['String']['input']>;
   to?: InputMaybe<Scalars['DateTime']['input']>;
   type: EventTypeInput;
 };
@@ -154,8 +155,8 @@ export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversT
 }
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  availableTimeslots?: Resolver<Maybe<Array<Maybe<ResolversTypes['timeSlot']>>>, ParentType, ContextType, RequireFields<QueryAvailableTimeslotsArgs, 'type'>>;
   locations?: Resolver<Maybe<Array<Maybe<ResolversTypes['location']>>>, ParentType, ContextType>;
+  timeslots?: Resolver<Maybe<Array<Maybe<ResolversTypes['timeSlot']>>>, ParentType, ContextType, RequireFields<QueryTimeslotsArgs, 'type'>>;
 };
 
 export type LocationResolvers<ContextType = any, ParentType extends ResolversParentTypes['location'] = ResolversParentTypes['location']> = {

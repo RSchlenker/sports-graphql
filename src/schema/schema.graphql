@@ -27,6 +27,6 @@ type timeSlot {
 }
 
 type Query {
-    availableTimeslots(from: DateTime, to: DateTime, type: eventTypeInput!) : [timeSlot]
+    timeslots(from: DateTime, to: DateTime, type: eventTypeInput!, location: String) : [timeSlot]
     locations: [location]
 }

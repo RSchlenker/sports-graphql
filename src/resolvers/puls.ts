@@ -2,7 +2,7 @@ import axios from 'axios'
 import {
   EventType,
   EventTypeInput,
-  QueryAvailableTimeslotsArgs,
+  QueryTimeslotsArgs,
   TimeSlot,
 } from '../schema/types'
 import { TimeSlotResolver } from '../TimeSlotLoader'
@@ -12,7 +12,7 @@ export default class PulsResolver implements TimeSlotResolver {
   public availableEventTypes = [EventType.Badminton, EventType.Squash]
   public link = 'https://www.puls-stuttgart.de/'
   public name = RESOLVER_NAME
-  async resolve({ type }: QueryAvailableTimeslotsArgs): Promise<TimeSlot[]> {
+  async resolve({ type }: QueryTimeslotsArgs): Promise<TimeSlot[]> {
     console.log('Loading puls timeslots')
     const eventTypes = await this.getEventTypes()
     let result: TimeSlot[] = []

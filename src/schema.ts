@@ -16,10 +16,10 @@ export const schema = createSchema({
   resolvers: {
     DateTime: DateTimeResolver,
     Query: {
-      availableTimeslots: async (parent, args, context) => {
+      timeslots: async (_, args) => {
         return await timeslotLoader.loadAll(args)
       },
-      locations: (parent, args, context): Location[] => {
+      locations: (): Location[] => {
         return timeslotLoader.getLocations()
       },
     },
