@@ -1,32 +1,37 @@
 scalar DateTime
 
 enum eventType {
-    Squash
-    Badminton
-    Soccer
+  Squash
+  Badminton
+  Soccer
 }
 
 enum eventTypeInput {
-    Squash
-    Badminton
-    Soccer
-    All
+  Squash
+  Badminton
+  Soccer
+  All
 }
 
 type location {
-    name: String!
-    eventTypes: [eventType]
-    link: String!
+  name: String!
+  eventTypes: [eventType]
+  link: String!
 }
 
 type timeSlot {
-    location: location!
-    type: eventType!
-    startTime: DateTime!
-    endTime: DateTime!
+  location: location!
+  type: eventType!
+  startTime: DateTime!
+  endTime: DateTime!
 }
 
 type Query {
-    timeslots(from: DateTime, to: DateTime, type: eventTypeInput!, location: String) : [timeSlot]
-    locations: [location]
+  timeslots(
+    from: DateTime
+    to: DateTime
+    type: eventTypeInput!
+    location: String
+  ): [timeSlot]
+  locations: [location]
 }
