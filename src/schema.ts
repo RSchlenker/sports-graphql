@@ -5,11 +5,13 @@ import PulsResolver from './resolvers/puls'
 import SoccerSindelfingenResolver from './resolvers/soccer-sindelfingen'
 import { DateTimeResolver } from 'graphql-scalars'
 import { Location } from './schema/types'
+import SoccerOlympResolver from './resolvers/SoccerOlymp'
 
 const file = fs.readFileSync(__dirname + '/schema/schema.graphql', 'utf8')
 const timeslotLoader = new TimeSlotLoader([
   new PulsResolver(),
   new SoccerSindelfingenResolver(),
+  new SoccerOlympResolver(),
 ])
 export const schema = createSchema({
   typeDefs: file,
