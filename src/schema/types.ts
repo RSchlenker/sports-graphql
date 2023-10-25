@@ -71,6 +71,7 @@ export type Location = {
 
 export type TimeSlot = {
   __typename?: 'timeSlot'
+  court?: Maybe<Scalars['String']['output']>
   endTime: Scalars['DateTime']['output']
   location: Location
   startTime: Scalars['DateTime']['output']
@@ -247,6 +248,7 @@ export type TimeSlotResolvers<
   ParentType extends
     ResolversParentTypes['timeSlot'] = ResolversParentTypes['timeSlot'],
 > = {
+  court?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
   endTime?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>
   location?: Resolver<ResolversTypes['location'], ParentType, ContextType>
   startTime?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>

@@ -24,6 +24,7 @@ type timeSlot {
   type: eventType!
   startTime: DateTime!
   endTime: DateTime!
+  court: String
 }
 
 type Query {
